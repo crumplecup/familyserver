@@ -1,7 +1,7 @@
-use crate::state::AppState;
-use axum::response::IntoResponse;
-use axum::http::StatusCode;
+use crate::state::{AppState, API_VERSION};
 use axum::extract::State;
+use axum::http::StatusCode;
+use axum::response::IntoResponse;
 use std::sync::Arc;
 
 pub async fn check(State(data): State<Arc<AppState>>) -> impl IntoResponse {
@@ -16,8 +16,5 @@ pub async fn check(State(data): State<Arc<AppState>>) -> impl IntoResponse {
         Err(e) => ver = format!("Error: {:?}", e),
     };
 
-    (StatusCode::OK,
-    [("family_server", "v0.0.1")],
-    ver,
-    )
+    (StatusCode::OK, [("family_server", API_VERSION)], ver)
 }

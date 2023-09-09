@@ -10,16 +10,19 @@ async fn hello_world() -> &'static str {
 }
 
 #[shuttle_runtime::main]
-async fn axum(
-    #[shuttle_shared_db::Postgres] pool: PgPool,
-             ) -> shuttle_axum::ShuttleAxum {
+async fn axum(#[shuttle_shared_db::Postgres] pool: PgPool) -> shuttle_axum::ShuttleAxum {
     pool.execute(include_str!("../schema.sql"))
         .await
         .map_err(CustomError::new)?;
-    let app_state = Arc::new(AppState::new(pool.clone()));
-    let router = Router::new().route("/", get(hello_world))
-        .route("/health", get(check))
-        .with_state(app_state);
+    let router = app(pool);
 
     Ok(router.into())
+}
+
+fn app(pool: PgPool) -> Router {
+    let app_state = Arc::new(AppState::new(pool.clone()));
+    Router::new()
+        .route("/", get(hello_world))
+        .route("/health", get(check))
+        .with_state(app_state)
 }
