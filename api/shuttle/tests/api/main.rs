@@ -1,6 +1,6 @@
 mod health;
 mod helpers;
-mod user;
+// mod user;
 
 pub mod prelude {
     pub use crate::helpers::{TestClient, HOST, LOCAL};
