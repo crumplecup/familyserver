@@ -8,6 +8,7 @@ anyhow = { workspace = true }
 api-lib = { workspace = true }
 axum = { workspace = true }
 reqwest = { workspace = true }
+shared = { path = "../../shared", features = ["backend"] }
 shuttle-axum = { workspace = true }
 shuttle-runtime = { workspace = true }
 shuttle-secrets = { workspace = true }
@@ -15,5 +16,7 @@ shuttle-shared-db = { workspace = true }
 shuttle-static-folder = { workspace = true }
 sqlx = { workspace = true }
 tokio = { workspace = true }
-tower-http = { version = "0.4.4", features = ["fs"] }
+tower-http = { workspace = true }
 tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+uuid = { workspace = true }

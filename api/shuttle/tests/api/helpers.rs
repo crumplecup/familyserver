@@ -14,6 +14,7 @@
 // });
 
 pub const HOST: &str = "https://familyserver.shuttleapp.rs";
+pub const LOCAL: &str = "https://localhost:8080";
 
 pub struct TestClient {
     client: reqwest::Client,
