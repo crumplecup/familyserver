@@ -10,16 +10,18 @@ CREATE TABLE IF NOT EXISTS users (
 );
 
 CREATE TABLE IF NOT EXISTS identity (
-    FOREIGN KEY user_id REFERENCES users(id) PRIMARY KEY,
+    identity_id serial PRIMARY KEY,
+    -- FOREIGN KEY user_id REFERENCES users(id),
     first_name TEXT NOT NULL,
     last_name TEXT,
-    middle_names TEXT,
-    FOREIGN KEY family_id REFERENCES families(family_id),
-)
+    middle_names TEXT
+    -- FOREIGN KEY family_id REFERENCES families(family_id),
+);
 
-CREATE TABLE IF NOT EXISTS health {
-    FOREIGN KEY user_id REFERENCES users(id) PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS health (
+    health_id serial PRIMARY KEY,
+    -- FOREIGN KEY user_id REFERENCES users(id),
     age TEXT,
     height_m TEXT,
-    weight_kg TEXT,
-}
+    weight_kg TEXT
+);

@@ -60,7 +60,7 @@ pub async fn create_user(
     State(data): State<Arc<AppState>>,
     Json(user): Json<user::User>,
 ) -> Result<impl IntoResponse, impl IntoResponse> {
-    tracing::info!("Creating user");
+    tracing::info!("Creating user {}.", &user.username_ref());
     let user = data.create(&user).await;
     match user {
         Ok(result) => Ok((axum::http::StatusCode::CREATED, Json(result))),
