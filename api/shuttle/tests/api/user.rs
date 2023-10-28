@@ -13,6 +13,7 @@ async fn local_create_user() {
     let pass = "password";
     let name = "admin";
     let user = User::new(name, &pass);
+    let usr = serde_json::json!({ "username": "admin", "password_hash": "password" });
     info!(
         "Sending local request to create user {}.",
         &user.username_ref()
@@ -22,7 +23,7 @@ async fn local_create_user() {
         .client()
         // Use the returned application address
         .post(&format!("{}/users", LOCAL))
-        .json(&user)
+        .json(&usr)
         .send()
         .await
         .expect("Failed to execute request.");

@@ -58,10 +58,12 @@ pub async fn get_user(
 
 pub async fn create_user(
     State(data): State<Arc<AppState>>,
-    Json(user): Json<user::User>,
+    Json(user): Json<serde_json::Value>,
 ) -> Result<impl IntoResponse, impl IntoResponse> {
-    tracing::info!("Creating user {}.", &user.username_ref());
-    let user = data.create(&user).await;
+    // tracing::info!("Creating user {}.", &user.username_ref());
+    tracing::info!("Creating user {}.", &user["username"]);
+    let usr = user::User::new(&user["username"].to_string(), &user["password_hash"].to_string());
+    let user = data.create(&usr).await;
     match user {
         Ok(result) => Ok((axum::http::StatusCode::CREATED, Json(result))),
         Err(e) => Err((axum::http::StatusCode::BAD_REQUEST, e.to_string())),

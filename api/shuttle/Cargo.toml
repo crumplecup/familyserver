@@ -14,6 +14,7 @@ shuttle-runtime = { workspace = true }
 shuttle-secrets = { workspace = true }
 shuttle-shared-db = { workspace = true }
 shuttle-static-folder = { workspace = true }
+serde_json = { workspace = true }
 sqlx = { workspace = true }
 tokio = { workspace = true }
 tower-http = { workspace = true }
