@@ -35,15 +35,15 @@ cp -r dist/* ../static
 workspace = false
 script_runner = "@shell"
 script = '''
-docker run -d --name family-local -p 5432:5432 -e POSTGRES_PASSWORD=postgres -e POSTGRES_USER=postgres -e POSTGRES_DB=family postgres
+docker run -d --name family-local -p 5432:5432 -e POSTGRES_PASSWORD=postgres -e POSTGRES_USER=postgres -e POSTGRES_DB=familyserver postgres
 '''
 
 [tasks.db-stop]
 workspace = false
 script_runner = "@shell"
 script = '''
-docker stop postgres
-docker rm postgres
+docker stop family-local
+docker rm family-local
 '''
 
 # general tasks

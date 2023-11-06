@@ -1,3 +1,4 @@
+use fake::Dummy;
 use serde::{Deserialize, Serialize};
 use uuid::Uuid;
 
@@ -7,7 +8,7 @@ pub enum OneOrMore {
 }
 
 #[cfg_attr(feature = "backend", derive(sqlx::FromRow))]
-#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, PartialOrd, Ord, Default)]
+#[derive(Serialize, Deserialize, Debug, Dummy, Clone, PartialEq, Eq, PartialOrd, Ord, Default)]
 pub struct User {
     id: Uuid,
     username: String,
@@ -30,6 +31,10 @@ impl User {
 
     pub fn id_ref(&self) -> &Uuid {
         &self.id
+    }
+
+    pub fn set_id(&mut self, value: Uuid) {
+        self.id = value;
     }
 
     pub fn username(&self) -> String {

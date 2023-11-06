@@ -7,6 +7,8 @@ edition = "2021"
 anyhow = { workspace = true }
 api-lib = { workspace = true }
 axum = { workspace = true }
+axum-server.workspace = true 
+fake.workspace = true 
 reqwest = { workspace = true }
 shared = { path = "../../shared", features = ["backend"] }
 shuttle-axum = { workspace = true }
@@ -17,7 +19,10 @@ shuttle-static-folder = { workspace = true }
 serde_json = { workspace = true }
 sqlx = { workspace = true }
 tokio = { workspace = true }
+tower.workspace = true 
 tower-http = { workspace = true }
 tracing = { workspace = true }
 tracing-subscriber = { workspace = true }
 uuid = { workspace = true }
+mime = "0.3.17"
+hyper = "0.14.27"

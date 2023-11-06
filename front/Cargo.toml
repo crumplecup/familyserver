@@ -6,9 +6,11 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+axum.workspace = true
 dioxus = { workspace = true }
 dioxus-web = { workspace = true }
 log = "0.4.20"
+reqwest = { workspace = true }
 shared = { path = "../shared" }
 tracing = { workspace = true }
 wasm-logger = "0.2.0"

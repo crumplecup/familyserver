@@ -6,6 +6,7 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+fake.workspace = true 
 serde.workspace = true
 sqlx = { workspace = true, optional = true }
 uuid = { workspace = true, features = ["serde"] }

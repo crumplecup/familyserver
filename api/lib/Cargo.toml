@@ -8,7 +8,14 @@ edition = "2021"
 [dependencies]
 async-trait = { workspace = true }
 axum = { workspace = true }
+dotenvy.workspace = true 
+nom.workspace = true 
+secrecy.workspace = true 
+serde.workspace = true 
+serde-aux.workspace = true 
+serde_json.workspace = true 
 shared = { path = "../../shared", features = ["backend"] }
 sqlx = { workspace = true }
+tower-http.workspace = true 
 tracing = { workspace = true }
 uuid = { workspace = true }

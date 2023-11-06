@@ -1,7 +1,7 @@
 #![allow(non_snake_case)]
 // Import the Dioxus prelude to gain access to the `rsx!` macro and the `Scope` and `Element` types.
 mod components;
-use components::{Footer, Header};
+use components::{Footer, Header, UserCard};
 use dioxus::prelude::*;
 use tracing::info;
 use wasm_logger;
@@ -23,6 +23,7 @@ fn App(cx: Scope) -> Element {
                section {
                    class: "md:container md:mx-auto md:py-8 flex-1",
                }
+               UserCard {}
                Footer {}
            }
         })

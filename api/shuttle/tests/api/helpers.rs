@@ -1,3 +1,5 @@
+use api_lib::prelude::*;
+use axum::routing::{get, post, Router};
 // use once_cell::sync::Lazy;
 
 // Ensure that the `tracing` stack is only initialised once using `once_cell`
@@ -14,7 +16,7 @@
 // });
 
 pub const HOST: &str = "https://familyserver.shuttleapp.rs";
-pub const LOCAL: &str = "https://localhost:8000";
+pub const LOCAL: &str = "http://localhost:8000";
 
 pub struct TestClient {
     client: reqwest::Client,
@@ -37,5 +39,34 @@ impl TestClient {
 
     pub fn client_mut(&mut self) -> &mut reqwest::Client {
         &mut self.client
+    }
+}
+
+pub struct TestApp {
+    router: Router,
+}
+
+impl TestApp {
+    pub async fn new() -> Self {
+        let settings = DatabaseSettings::from_env().unwrap();
+        settings.create_db().await;
+        // settings.configure_database().await;
+        let db_pool = settings.get_connection_pool();
+        let router = AppState::new(db_pool).app();
+        TestApp { router }
+    }
+
+    pub fn router(&self) -> Router {
+        self.router.clone()
+    }
+
+    pub async fn create_db(&self) {
+        let settings = DatabaseSettings::from_env().unwrap();
+        settings.create_db().await;
+    }
+
+    pub async fn delete_db(&self) {
+        let settings = DatabaseSettings::from_env().unwrap();
+        settings.delete_db().await;
     }
 }

@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS families (
 
 DROP TABLE IF EXISTS users;
 CREATE TABLE IF NOT EXISTS users (
-    id serial PRIMARY KEY,
+    id uuid PRIMARY KEY,
     username TEXT NOT NULL UNIQUE,
     password_hash TEXT NOT NULL
 );
